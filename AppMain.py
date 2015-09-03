@@ -26,7 +26,7 @@ class TheMainWindow(QMainWindow):
         self.setWindowTitle('Start')
         self.refPerfFile=False
         self.TargetPerfFile=False
-        self.curTable=None
+        self.defaultSheet=None
         
         
         self.winPfmon=PerfmonWindows(self)
@@ -79,8 +79,10 @@ class TheMainWindow(QMainWindow):
             self.ui.label_RefFile.setText(fileName)
             self.refPerfFile=fileName
             self.top.loadDataFromFile(fileName,SheetForm.REFER)
-            sheet=self.top.addSheet('refDefaultSheet')
+            sheet=self.top.addSheet('DefaultSheet')
+            self.top.reloadData(SheetForm.REFER)
             self.top.selectSheet(sheet)
+
 
     def setTargetFileName(self):
         options = QFileDialog.Options()
@@ -90,6 +92,11 @@ class TheMainWindow(QMainWindow):
         if fileName:
             self.ui.label_TargetFile.setText(fileName)
             self.TargetPerfFile=fileName
+            self.top.loadDataFromFile(fileName,SheetForm.TARGET)
+            sheet=self.top.addSheet('DefaultSheet')
+            self.top.reloadData(SheetForm.TARGET)
+            self.top.selectSheet(sheet)
+            
     def calcDiff(self):
         pass
         #self.top.loadDataFromFile(self.refPerfFile,self.TargetPerfFile)

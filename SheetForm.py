@@ -7,8 +7,8 @@ class SheetForm:
     #selected pfmonMV,batchInfoMV
     def __init__(self,name,parent,sheet=None):
         self.name=name
-        self.orgCountersModel=[None,None,None]
-        self.orgBatchesModel=[None,None,None]
+        self.orgCounterModels=[None,None,None]
+        self.orgBatchModels=[None,None,None]
         self.orgCounters=[None,None,None]
 
         self.selCountersModel=[None,None,None]
@@ -18,11 +18,12 @@ class SheetForm:
         for i in range(3):
             self.selCountersModel[i] = createModel(parent,0,0,('Perfmons',))
             self.selBatchesModel[i]=createModel(parent,0,1,('BatchId','RenderType'))
-        if not sheet:
-            return
-        for i in range(3):
-            self.orgBatchesModel[i]=sheet.orgBatchesModel[i]
-            self.orgCountersModel[i]=sheet.orgCountersModel[i]
+        if sheet:        
+            for i in range(3):
+                self.orgBatchModels[i]=sheet.orgBatchModels[i]
+                self.orgCounterModels[i]=sheet.orgCounterModels[i]
+        
+            
         
 
         

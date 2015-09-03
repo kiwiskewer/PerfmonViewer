@@ -21,13 +21,13 @@ class BatchWindows:
         parent.ui.pushButton_selBatches.clicked.connect(self.addSelectedBatches)
     def setSheet(self,sheet):
         self.curSheet=sheet
-        self.orgBatchesView.setModel(sheet.orgBatchesModel[self.group])
+        self.orgBatchesView.setModel(sheet.orgBatcheModels[self.group])
         self.selBatchesView.setModel(sheet.selBatchesModel[self.group])
 
     def addSelectedBatches(self):
         index=self.orgBatchesView.selectedIndexes()
         sel_model=self.curSheet.selBatchesModel[self.group]
-        org_model=self.curSheet.orgBatchesModel[self.group]
+        org_model=self.curSheet.orgBatcheModels[self.group]
         for idx in index: 
             row=idx.row()          
             b_id=org_model.itemData(org_model.index(row,0))
@@ -45,5 +45,5 @@ class BatchWindows:
         syntax = QRegExp.PatternSyntax(QRegExp.Wildcard)
         caseSensitivity = Qt.CaseInsensitive
         regExp = QRegExp(self.batchFilter.text(),caseSensitivity, syntax)
-        self.curSheet.orgBatchesModel[self.group].setFilterRegExp(regExp)
+        self.curSheet.orgBatcheModels[self.group].setFilterRegExp(regExp)
         

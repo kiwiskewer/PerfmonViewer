@@ -22,20 +22,20 @@ class PerfmonWindows:
         
     def setSheet(self,sheet):
         self.curSheet=sheet
-        self.orgPfmonView.setModel(sheet.orgCountersModel[self.group])
+        self.orgPfmonView.setModel(sheet.orgCounterModels[self.group])
         self.selPfmonView.setModel(sheet.selCountersModel[self.group])
 
     def pfmonFilterChanged(self):
         syntax = QRegExp.PatternSyntax(QRegExp.Wildcard)
         caseSensitivity = Qt.CaseInsensitive
         regExp = QRegExp(self.pfmonFilter.text(),caseSensitivity, syntax)
-        self.curSheet.orgCountersModel[self.group].setFilterRegExp(regExp)
+        self.curSheet.orgCounterModels[self.group].setFilterRegExp(regExp)
 
     def addSelectedCounters(self):
         index=self.orgPfmonView.selectedIndexes()
         model=self.curSheet.selCountersModel[self.group]
         for idx in index:           
-            item=self.curSheet.orgCountersModel[self.group].itemData(idx)
+            item=self.curSheet.orgCounterModels[self.group].itemData(idx)
             sels=self.curSheet.selCounters[self.group]
             if item[0] in sels:
                 continue

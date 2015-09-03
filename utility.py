@@ -6,7 +6,7 @@ def createModel(parent,rows,cols,colNames):
     model=QStandardItemModel(rows, cols+1, parent)
     i=0
     for c in colNames:
-        model.setHeaderData(i, Qt.Horizontal, colNames[i])
+        model.setHeaderData(i, Qt.Horizontal, c)
         i+=1
     proxyModel=QSortFilterProxyModel()
     proxyModel.setDynamicSortFilter(True)

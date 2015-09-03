@@ -78,8 +78,10 @@ class TopWindows:
             name=self.sheetNameInput.text()
         if not name:
             return
-        if name not in self.sheets.keys():
+        if name not in self.sheets:
             sheet=SheetForm(name,self.parent)
+            self.sheetsViewModel.insertRow(0)
+            self.sheetsViewModel.setData(self.sheetsViewModel.index(0,0),sheet.name)
         else:
             sheet=self.sheets[name]
         sheet.orgCounters=self.pfCounters
@@ -87,8 +89,7 @@ class TopWindows:
         sheet.orgBatcheModels=self.pfBatchModels
 
         self.sheets[sheet.name]=sheet
-        self.sheetsViewModel.insertRow(0)
-        self.sheetsViewModel.setData(self.sheetsViewModel.index(0,0),sheet.name)
+
         return sheet
 
     def deleteSheet(self):

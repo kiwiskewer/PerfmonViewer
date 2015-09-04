@@ -13,6 +13,7 @@ from utility import *
 from BatchPfmonTable import BatchPfmonTable
 from sympy.polys.groebnertools import groebner
 from astropy.io.fits.hdu.groups import Group
+from numpy import array
 
 class TopWindows:
     def __init__(self,parent):
@@ -33,7 +34,7 @@ class TopWindows:
         parent.ui.treeView_spreadSheets.selectionModel().selectionChanged.connect(self.updatePerfBatchFromSheet)
 
 
-        self.pfCounters=[defaultdict(list) for i in range(3)]
+        self.pfCounters=[defaultdict(array) for i in range(3)]
         i=0
         for name in ('Refer','Target','Diff'):
             self.pfCounterModels[i]=createModel(self.parent,0,0,(name,))
@@ -63,9 +64,9 @@ class TopWindows:
         for b in range(len(pfmon['batch_id'])):
             model.insertRow(0)
             d=pfmon['batch_id'][b]
-            model.setData(model.index(0,0),d)
+            model.setData(model.index(0,0),int(d))
             d=pfmon['batch_type'][b]
-            model.setData(model.index(0,1),d)                
+            model.setData(model.index(0,1),int(d))                
             
 
     def loadDataFromFile(self,ref_fn,group):

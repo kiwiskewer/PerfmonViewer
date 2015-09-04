@@ -2,6 +2,7 @@
 from PyQt5.QtCore import QRegExp, QSortFilterProxyModel,Qt
 from PyQt5.QtWidgets import QAbstractItemView
 
+
 def createModel(parent,rows,cols,colNames):
     model=QStandardItemModel(rows, cols+1, parent)
     i=0

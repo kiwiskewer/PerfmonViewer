@@ -17,6 +17,7 @@ class ChartWindows:
         parent.ui.treeView_charts.selectionModel().selectionChanged.connect(self.setCurChart)
     def setSheet(self,sheet):
         self.curSheet=sheet
+        self.addChart()
 
     def addChart(self):
         if not self.curSheet:
@@ -39,6 +40,6 @@ class ChartWindows:
         self.curChart=self.charts[n]
 
     def showChart(self):
-        self.parent.curTable=BatchPfmonTable()
+        self.parent.curTable=BatchPfmonTable(self.curSheet)
         self.parent.curTable.show()
         pass

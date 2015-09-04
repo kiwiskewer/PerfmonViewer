@@ -34,7 +34,7 @@ class BatchPfmonTable(QWidget):
             #self.model.insertRow(y,1)
             self.model.setData(self.model.index(y,0, QModelIndex()),cnt)
             for b in range(num_b):
-                self.model.setData(self.model.index(y,x,QModelIndex()),values[cnt][b])
+                self.model.setData(self.model.index(y,x,QModelIndex()),int(values[cnt][b]))
                 
                 x+=1
             y+=1

@@ -73,7 +73,11 @@ class TopWindows:
         if ref_fn:
             self.pfCounters[group] = pfreader(ref_fn)
 
-
+    def calcDiff(self):
+        if not self.curSheet:
+            return
+        self.curSheet.calcDiff()
+        
     def addSheet(self,name=None):
         if not name:
             name=self.sheetNameInput.text()
